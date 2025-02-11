@@ -740,4 +740,28 @@ $('.slide-familia').slick({
   <div id="hs-web-interactives-floating-bottom-right-anchor" class="go2417249464 go3967842156">
   </div>
 </div>
-</body></html>
+</body>
+<script>
+
+  function getQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+      nombre: params.get('nombre') || '',
+      correo: params.get('correo') || '',
+      telefono: params.get('telefono') || '',
+      campus: params.get('campus') || '',
+      servicio: params.get('servicio') || ''
+    };
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('form-ticket').scrollIntoView({ behavior: 'smooth' });
+    const queryParams = getQueryParams();
+    document.getElementById('hs_nombre_del_solicitante').value = queryParams.nombre;
+    document.getElementById('hs_correo_del_solicitante').value = queryParams.correo;
+    document.getElementById('hs_telefono_del_solicitante').value = queryParams.telefono;
+    document.querySelector(`select[name="campus"] option[value="${queryParams.campus}"]`).selected = true;
+    document.querySelector(`select[name="hs_ticket_category"] option[value="${queryParams.servicio}"]`).selected = true;
+  });
+</script>
+</html>
